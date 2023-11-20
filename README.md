@@ -6,7 +6,7 @@ The SQL Command Generator is a web application that allows users to dynamically 
 
 ## Use Online
 
-Check out the [live demo](https://muntasirarafat.github.io/SQL-Command-Generator/) to see the SQL Command Generator in action.
+Check out the [SQL Command Generator](https://muntasirarafat.github.io/SQL-Command-Generator/) to see the SQL Command Generator in action.
 
 
 ## Features
