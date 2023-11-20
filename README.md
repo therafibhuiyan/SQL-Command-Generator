@@ -23,11 +23,5 @@ The SQL Command Generator is a web application that allows users to dynamically 
 5. Click the "Generate SQL Commands" button to generate the SQL commands.
 6. Copy and use the generated SQL commands in your database.
 
-## Getting Started
 
-To run the SQL Command Generator locally:
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/your-username/sql-command-generator.git
 
