@@ -4,6 +4,11 @@
 
 The SQL Command Generator is a web application that allows users to dynamically generate SQL commands for creating tables in a database. It simplifies the process of creating tables by providing a user-friendly interface for defining table names, database names, and custom columns.
 
+## Use Online
+
+Check out the [live demo](https://muntasirarafat.github.io/SQL-Command-Generator/) to see the SQL Command Generator in action.
+
+
 ## Features
 
 - **Easy-to-Use Interface:** Simple and intuitive UI for entering table and database names, as well as adding custom columns.
