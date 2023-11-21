@@ -111,22 +111,28 @@
         var newColumn = document.createElement("div");
 
         newColumn.innerHTML = `
-                <label for="columnName">Column Name:</label>
-                <input type="text" class="column-name" required>
-                
-                <label for="columnType">Column Type:</label>
-                <select class="column-type" required>
-                    <option value="INT">INT</option>
-                    <option value="VARCHAR(255)">VARCHAR(255)</option>
-                    <option value="TEXT">TEXT</option>
-                    <option value="DATE">DATE</option>
-                    <option value="DATETIME">DATETIME</option>
-                    <option value="FLOAT">FLOAT</option>
-                    <option value="DOUBLE">DOUBLE</option>
-                    <option value="BOOLEAN">BOOLEAN</option>
-                    <!-- Add more data types as needed -->
-                </select>
-            `;
+          <label for="columnName">Column Name:</label>
+          <input type="text" class="column-name" required>
+
+          <label for="columnType">Column Type:</label>
+          <select class="column-type" required>
+            <option value="INT">INT</option>
+            <option value="VARCHAR(255)">VARCHAR(255)</option>
+            <option value="TEXT">TEXT</option>
+            <option value="DATE">DATE</option>
+            <option value="DATETIME">DATETIME</option>
+            <option value="FLOAT">FLOAT</option>
+            <option value="DOUBLE">DOUBLE</option>
+            <option value="BOOLEAN">BOOLEAN</option>
+            <!-- Add more data types as needed -->
+          </select>
+
+          <label for="default">Default Value:</label>
+          <input type="text" class="default-value">
+
+          <label for="allowNull">Allow Null:</label>
+          <input type="checkbox" class="allow-null">
+        `;
 
         columnInputs.appendChild(newColumn);
       }
@@ -152,6 +158,12 @@
         var types = document
           .getElementsByClassName("column-container")[0]
           .querySelectorAll(".column-type");
+        var defaultValues = document
+          .getElementsByClassName("column-container")[0]
+          .querySelectorAll(".default-value");
+        var allowNulls = document
+          .getElementsByClassName("column-container")[0]
+          .querySelectorAll(".allow-null");
         var createTable = `CREATE TABLE ${tableName} (`;
 
         // Include auto-generated columns only once
@@ -162,7 +174,14 @@
 
         // Include user-added columns
         for (var i = 0; i < columns.length; i++) {
-          createTable += `${columns[i].value} ${types[i].value}, `;
+          createTable += `${columns[i].value} ${types[i].value}`;
+          if (defaultValues[i].value !== "") {
+            createTable += ` DEFAULT '${defaultValues[i].value}'`;
+          }
+          if (allowNulls[i].checked) {
+            createTable += " NULL";
+          }
+          createTable += `, `;
         }
 
         createTable = createTable.slice(0, -2) + ");";
@@ -174,3 +193,4 @@
     </script>
   </body>
 </html>
+
