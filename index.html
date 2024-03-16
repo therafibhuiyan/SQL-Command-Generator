@@ -145,33 +145,24 @@
         var createDatabase = `CREATE DATABASE IF NOT EXISTS ${databaseName};`;
         var useDatabase = `USE ${databaseName};`;
 
-        // Generate column creation SQL
-        var columns = document
-          .getElementsByClassName("column-container")[0]
-          .querySelectorAll(".column-name:not(.default-column)");
-        var types = document
-          .getElementsByClassName("column-container")[0]
-          .querySelectorAll(".column-type");
-        var createTable = `CREATE TABLE ${tableName} (`;
+        var columns = document.getElementsByClassName("column-name");
+        var types = document.getElementsByClassName("column-type");
 
-        // Include auto-generated columns only once
-        if (!defaultColumnsIncluded) {
-          createTable += `id INT, created_at TIMESTAMP, updated_at TIMESTAMP, `;
-          defaultColumnsIncluded = true;
-        }
+        // Start creating the table with the id column
+        var createTable = `CREATE TABLE ${tableName} (id INT AUTO_INCREMENT PRIMARY KEY, `;
 
-        // Include user-added columns
-        for (var i = 0; i < columns.length; i++) {
+        // Add user-defined columns
+        for (var i = 3; i < columns.length; i++) {
+          // Start from index 3 to skip default columns
           createTable += `${columns[i].value} ${types[i].value}, `;
         }
 
-        createTable = createTable.slice(0, -2) + ");";
+        // Add created_at and updated_at at the end
+        createTable += `created_at TIMESTAMP, updated_at TIMESTAMP);`;
 
         var sqlCommands = `${createDatabase}\n${useDatabase}\n${createTable}`;
-
         document.getElementById("sqlCommands").value = sqlCommands;
       }
     </script>
   </body>
 </html>
-
